@@ -32,7 +32,7 @@ class Event {
   String? location;
 
   /// An URL for this event
-  Uri? url;
+  String? url;
 
   /// A list of attendees for this event
   List<Attendee?>? attendees;
@@ -146,9 +146,9 @@ class Event {
 
     foundUrl = json['eventURL']?.toString();
     if (foundUrl?.isEmpty ?? true) {
-      url = null;
+      url = "";
     } else {
-      url = Uri.dataFromString(foundUrl as String);
+      url = foundUrl;
     }
 
     if (json['attendees'] != null) {
@@ -234,7 +234,7 @@ class Event {
     data['eventEndTimeZone'] = end?.location.name;
     data['eventAllDay'] = allDay;
     data['eventLocation'] = location;
-    data['eventURL'] = url?.data?.contentText;
+    data['eventURL'] = url;
     data['availability'] = availability.enumToString;
     data['eventStatus'] = status?.enumToString;
 
